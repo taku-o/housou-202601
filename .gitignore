@@ -1,0 +1,15 @@
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# housou
+c-learning/source_utf-8/
+c-learning/books/
+
