@@ -1,0 +1,19 @@
+#include <stdio.h>
+
+int main(void)
+{
+    int input;
+    printf("正の整数を入力してください > ");
+    scanf("%d", &input);
+
+    while (0 < input)
+    {
+        if (input % 3 == 0)
+        {
+            printf("%d ", input);
+        }
+        input--;
+    }
+    printf("\n");
+    return 0;
+}
