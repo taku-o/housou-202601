@@ -5,7 +5,7 @@ int main(void)
 {
     double x;
 
-    printf("非数の数を入力してください。 > ");
+    printf("非負の数を入力してください。 > ");
     scanf("%lf", &x);
 
     printf("%fの平方根は%fです。\n", x, sqrt(x));
