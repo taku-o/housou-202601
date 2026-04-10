@@ -1,11 +1,14 @@
 #include <stdio.h>
-#define TEST_ENABLED 0
+
+#ifndef TEST_ENABLED
+    #define TEST_ENABLED 0
+#endif
 
 int sqr(int);
 
 #if TEST_ENABLED
-int test_sqr(void);
-int test_sqr_divcalc(void);
+    int test_sqr(void);
+    int test_sqr_divcalc(void);
 #endif
 
 int main(void)
@@ -13,11 +16,12 @@ int main(void)
     int n;
     int a, b;
 
-#if TEST_ENABLED
-    /* test */
+    #if TEST_ENABLED
     if (test_sqr()) return 1;
     if (test_sqr_divcalc()) return 1;
-#endif
+    printf("TEST Done.\n");
+    return 0;
+    #endif // end of #if TEST_ENABLED
 
     /* ①  入力の受け取り */
     printf("2以上の整数を入力してください > ");
@@ -26,7 +30,7 @@ int main(void)
     /* ②  入力値の確認 */
     if (n < 2)
     {
-        printf("入力した値が範囲外です。\n");
+        printf("入力した値が範囲外の値です。\n");
         return 1;
     }
 
@@ -37,6 +41,8 @@ int main(void)
      *   = a√b
      *
      * ④  bの値の特定。両辺を(a * a)で割って、右辺の(a * a)を消す。
+     * すると、bは n / (a * a) で特定できることがわかる。
+     *
      * n = (a * a) * b
      * n / (a * a) = ((a * a) * b) / (a * a)
      * n / (a * a) = b
@@ -45,7 +51,7 @@ int main(void)
     b = n / (a * a);
 
     /*
-     * ⑤  結果の表示。√1、もしくは1√nの結果になった時、計算結果を修正する。
+     * ⑤  結果の表示。√1、もしくは1√nの結果になった時、計算結果の表示を修正する。
      * 6√2 => 6√17
      * 4√1 => 4
      * 1√17 => √17
@@ -66,8 +72,8 @@ int main(void)
 }
 
 /*
- * ⑥  nをiの2乗で割り切れる時、そのiを返す。
- * 割り切れるiの2乗の値が複数あるときは、最大の値を返す。
+ * ⑥  整数nを整数iの2乗で割り切れる時、そのiを返す。
+ * 割り切れる整数iの2乗の値が複数あるときは、その中で最大の値を返す。
  */
 int sqr(int n)
 {
@@ -189,5 +195,5 @@ int test_sqr_divcalc(void)
 
     return 0;
 }
-#endif
+#endif // end of #if TEST_ENABLED
 
